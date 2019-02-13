@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">VideoStreamPlayerTestApp</string>
+    <string name="error">Произошла ошибка, повторите попытку</string>
+    <string name="errorurl">Введённый текст не является URL, повторите ввод</string>
+</resources>

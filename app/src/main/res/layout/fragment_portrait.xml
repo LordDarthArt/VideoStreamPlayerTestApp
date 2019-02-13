@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             tools:context=".PortraitFragment" android:id="@+id/clMain">
+    <VideoView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/videoView" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/clNavBtns">
+
+        <ImageView
+                android:src="@drawable/ic_baseline_fast_forward"
+                android:layout_width="35dp"
+                android:layout_height="35dp" android:id="@+id/btnFaster"
+                app:layout_constraintStart_toEndOf="@+id/btnPlay" android:layout_marginStart="8dp"
+                app:layout_constraintTop_toTopOf="@+id/btnPlay"
+                app:layout_constraintBottom_toBottomOf="@+id/btnPlay" android:tint="@android:color/white"/>
+        <ImageView
+                android:src="@drawable/ic_baseline_play_arrow"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:id="@+id/btnPlay" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp" android:tint="@android:color/white"/>
+        <ImageView
+                android:src="@drawable/ic_baseline_fast_rewind"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:id="@+id/btnSlower" app:layout_constraintEnd_toStartOf="@+id/btnPlay"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintTop_toTopOf="@+id/btnPlay"
+                app:layout_constraintBottom_toBottomOf="@+id/btnPlay" android:tint="@android:color/white"/>
+        <ImageView
+                android:src="@drawable/ic_baseline_skip_next"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:id="@+id/btnForward"
+                app:layout_constraintBottom_toBottomOf="@+id/btnFaster"
+                app:layout_constraintTop_toTopOf="@+id/btnFaster" app:layout_constraintStart_toEndOf="@+id/btnFaster"
+                android:layout_marginStart="8dp" android:tint="@android:color/white"/>
+        <ImageView
+                android:src="@drawable/ic_baseline_skip_previous"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:id="@+id/btnBackward"
+                app:layout_constraintBottom_toBottomOf="@+id/btnSlower"
+                app:layout_constraintTop_toTopOf="@+id/btnSlower" app:layout_constraintEnd_toStartOf="@+id/btnSlower"
+                android:layout_marginEnd="8dp" android:tint="@android:color/white"/>
+        <ImageView
+                android:src="@drawable/ic_baseline_volume_up"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:id="@+id/btnVolumeOnOff" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintTop_toTopOf="@+id/btnForward"
+                app:layout_constraintBottom_toBottomOf="@+id/btnForward" android:tint="@android:color/white"/>
+        <ImageView
+                android:src="@drawable/ic_baseline_stop"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:id="@+id/btnStop" app:layout_constraintEnd_toStartOf="@+id/btnBackward"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintTop_toTopOf="@+id/btnBackward"
+                app:layout_constraintBottom_toBottomOf="@+id/btnBackward" android:tint="@android:color/white"/>
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>
