@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package tk.lorddarthart.videostreamplayer
 
 
@@ -59,7 +61,6 @@ class PortraitFragment : Fragment() {
             builder.setTitle("Please enter URL")
             builder.setCancelable(false)
             val input = EditText(activity)
-            input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             builder.setView(input)
 
             builder.setPositiveButton(
@@ -71,6 +72,7 @@ class PortraitFragment : Fragment() {
                         throw Exception()
                     } else {
                         dialog.cancel()
+                        view.btnPlay.performClick()
                     }
                 } catch (e: Exception) {
                     Toast.makeText(context, resources.getString(R.string.errorurl), Toast.LENGTH_LONG).show()
@@ -117,19 +119,24 @@ class PortraitFragment : Fragment() {
             clickBtnSlower(view)
         }
         view.btnVolumeOnOff.setOnClickListener {
-            val am = this.context?.getSystemService(Context.AUDIO_SERVICE) as AudioManager
-            val volumeLevel = am.getStreamVolume(AudioManager.STREAM_MUSIC)
-            clickBtnMute(view, volumeLevel, am)
+            clickBtnMute(view)
         }
         return view
     }
 
-    private fun clickBtnMute(view: View, volume_level: Int, am: AudioManager) {
-        if (volume_level != 0) {
+    private fun clickBtnMute(view: View) {
+        val am = this.context?.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        val volumeLevel = am.getStreamVolume(AudioManager.STREAM_MUSIC)
+        if (volumeLevel != 0) {
             am.setStreamMute(AudioManager.STREAM_MUSIC, true)
+            view.btnVolumeOnOff.setImageResource(R.drawable.ic_baseline_volume_off)
+            view.btnVolumeOnOff.tag = R.drawable.ic_baseline_volume_off
         } else {
             am.setStreamMute(AudioManager.STREAM_MUSIC, false)
+            view.btnVolumeOnOff.setImageResource(R.drawable.ic_baseline_volume_up)
+            view.btnVolumeOnOff.tag = R.drawable.ic_baseline_volume_up
         }
+        Timer().schedule(MyTimerTask(), 5000)
     }
 
     private fun clickBtnForward(view: View) {
@@ -137,6 +144,7 @@ class PortraitFragment : Fragment() {
         view.videoView.pause()
         view.btnPlay.setImageResource(R.drawable.ic_baseline_repeat)
         view.btnPlay.tag = R.drawable.ic_baseline_repeat
+        Timer().schedule(MyTimerTask(), 5000)
     }
 
     private fun clickBtnBackward(view: View) {
@@ -145,14 +153,17 @@ class PortraitFragment : Fragment() {
         view.videoView.tag = "pause"
         view.btnPlay.setImageResource(R.drawable.ic_baseline_play_arrow)
         view.btnPlay.tag = R.drawable.ic_baseline_play_arrow
+        Timer().schedule(MyTimerTask(), 5000)
     }
 
     private fun clickBtnFaster(view: View) {
         view.videoView.seekTo(view.videoView.currentPosition + 10000)
+        Timer().schedule(MyTimerTask(), 5000)
     }
 
     private fun clickBtnSlower(view: View) {
         view.videoView.seekTo(view.videoView.currentPosition - 10000)
+        Timer().schedule(MyTimerTask(), 5000)
     }
 
     private fun clickBtnStop(view: View) {
@@ -161,6 +172,7 @@ class PortraitFragment : Fragment() {
         view.videoView.tag = "first"
         view.btnPlay.setImageResource(R.drawable.ic_baseline_play_arrow)
         view.btnPlay.tag = R.drawable.ic_baseline_play_arrow
+        Timer().schedule(MyTimerTask(), 5000)
     }
 
     private fun hideNavBtns(view: View) { // Скрыть-показать панель
@@ -178,6 +190,7 @@ class PortraitFragment : Fragment() {
         view.btnPlay.setImageResource(R.drawable.ic_baseline_pause)
         view.btnPlay.tag = R.drawable.ic_baseline_pause
         view.videoView.tag = "play"
+        Timer().schedule(MyTimerTask(), 5000)
     }
 
     private fun clickBtnPause(view: View) { // Поставить паузу
@@ -185,6 +198,7 @@ class PortraitFragment : Fragment() {
         view.btnPlay.setImageResource(R.drawable.ic_baseline_play_arrow)
         view.btnPlay.tag = R.drawable.ic_baseline_play_arrow
         view.videoView.tag = "pause"
+        Timer().schedule(MyTimerTask(), 5000)
     }
 
     private fun clickBtnRepeat(view: View) { // Начать заново
@@ -192,6 +206,7 @@ class PortraitFragment : Fragment() {
         view.btnPlay.setImageResource(R.drawable.ic_baseline_pause)
         view.btnPlay.tag = R.drawable.ic_baseline_pause
         view.videoView.tag = "play"
+        Timer().schedule(MyTimerTask(), 5000)
     }
 
     private fun clickBtnPlay(view: View, uri: Uri) { // Запустить проигрывание
